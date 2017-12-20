@@ -142,7 +142,7 @@ namespace Enterprises.Framework.Plugin.Domain.AD.Tests
         [TestMethod()]
         public void ConverToLdapPath()
         {
-            var result = svc.FilePathConverToLdapPath("ht.800bset.net/pphbh.com/103_RD", "hzdc1.pphbh.net");
+            var result = svc.FilePathConverToLdapPath("ht.ppfbh.net/pphbh.com/103_RD", "hzdc1.pphbh.net");
             Console.Write(result);
         }
 

@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Index2";
+}
+<script src="~/Scripts/jquery.signalR-1.1.3.min.js"></script>
+<script src="~/signalR/hubs"></script>
+<h2>
+    Index2</h2>
+<input type="text" id="footer" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        var messagesHub = $.connection.signalTest;
+        messagesHub.client.showMessage = function (msg) {
+            $('#footer').val(msg);
+        };
+
+        $.connection.hub.start();
+    });
+</script>

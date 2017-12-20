@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6543FA93-2517-40C6-A76E-5EA2918D3F0E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Enterprises.Framework</RootNamespace>
+    <AssemblyName>Enterprises.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Enterprises.Framework.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.3.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\Refrences\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy2">
+      <HintPath>..\Refrences\Castle.DynamicProxy2.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="ITextSharp">
+      <HintPath>..\Refrences\Pdf\ITextSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Refrences\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Exchange.WebServices">
+      <HintPath>..\Refrences\Office\Microsoft.Exchange.WebServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>..\Refrences\Office\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Refrences\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.Extension, Version=2.1.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\NPOI.Extension.2.1.0\lib\net45\NPOI.Extension.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.3.0\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\System.Management.Automation\1.0.0.0__31bf3856ad364e35\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AOP2\AOPAttribute.cs" />
+    <Compile Include="AOP2\AOPProperty.cs" />
+    <Compile Include="AOP2\AOPSink.cs" />
+    <Compile Include="AOP2\IAfterAdvice.cs" />
+    <Compile Include="AOP2\IContextProperty.cs" />
+    <Compile Include="Aop\AOP.cs" />
+    <Compile Include="AjaxFramework\NamedProperty.cs" />
+    <Compile Include="Entity\BinarySerializeCollection.cs" />
+    <Compile Include="Entity\KeyValueItem.cs" />
+    <Compile Include="Entity\KeyValueItemCollection.cs" />
+    <Compile Include="Entity\KeyValueItemCollectionWrap.cs" />
+    <Compile Include="Plugin\Config\ConfigBase.cs" />
+    <Compile Include="Plugin\Config\ConfigFactory.cs" />
+    <Compile Include="Plugin\Config\ConfigSection.cs" />
+    <Compile Include="Plugin\Config\ConfigUtility.cs" />
+    <Compile Include="Plugin\Config\FrameworkConfiguration.cs" />
+    <Compile Include="Plugin\Domain\ADAccountOptions.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ADManager.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ADObject\BaseObject.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ADObject\Builtin.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ADObject\Computer.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ADObject\Container.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ADObject\Domain.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ADObject\Group.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ADObject\OU.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ADObject\User.cs" />
+    <Compile Include="Plugin\Domain\AdManager\Enum\AccountOptions.cs" />
+    <Compile Include="Plugin\Domain\AdManager\Enum\GroupScope.cs" />
+    <Compile Include="Plugin\Domain\AdManager\Enum\LoginResult.cs" />
+    <Compile Include="Plugin\Domain\AdManager\Enum\SchemaClass.cs" />
+    <Compile Include="Plugin\Domain\AdManager\Exception\Exception.cs" />
+    <Compile Include="Plugin\Domain\AdManager\ParaMgr.cs" />
+    <Compile Include="Plugin\Domain\AdManager\Utils.cs" />
+    <Compile Include="Plugin\Domain\AD\ADHelper.cs" />
+    <Compile Include="Plugin\Domain\AD\ADMethodsAccountManagement.cs" />
+    <Compile Include="Plugin\Domain\AD\AdEntity.cs" />
+    <Compile Include="Plugin\Domain\AD\ExchangeEwsService.cs" />
+    <Compile Include="Plugin\Domain\AD\ExchangePowerShellHelper.cs" />
+    <Compile Include="Plugin\Domain\AD\GroupMethodsManagement.cs" />
+    <Compile Include="Plugin\Domain\AD\OuMethodsMangement.cs" />
+    <Compile Include="Plugin\Domain\DirectoryObjectType.cs" />
+    <Compile Include="Plugin\Domain\DomainConfiguration.cs" />
+    <Compile Include="Plugin\Domain\DomainGroup.cs" />
+    <Compile Include="Plugin\Domain\DomainOrganizationUnit.cs" />
+    <Compile Include="Plugin\Domain\DomainOrganizationUnitPropertities.cs" />
+    <Compile Include="Plugin\Domain\DomainOrganizationUnitPropertitiesDescription.cs" />
+    <Compile Include="Plugin\Domain\DomainOrganizationUnitUser.cs" />
+    <Compile Include="Plugin\Domain\DomainOrganizationUnitUserCollection.cs" />
+    <Compile Include="Plugin\Domain\DomainUser.cs" />
+    <Compile Include="Plugin\Domain\DomainUserAccountPropertities.cs" />
+    <Compile Include="Plugin\Domain\DomainUserCollection.cs" />
+    <Compile Include="Plugin\Domain\DomainUserPropertities.cs" />
+    <Compile Include="Plugin\Domain\DomainUserPropertitiesDescription.cs" />
+    <Compile Include="Plugin\Domain\DomainUtility.cs" />
+    <Compile Include="Plugin\Domain\ImpersonateUserHelper.cs" />
+    <Compile Include="Plugin\Email\ISmtpMail.cs" />
+    <Compile Include="Plugin\Email\SmtpEmailAttribute.cs" />
+    <Compile Include="Plugin\Email\SmtpMail.cs" />
+    <Compile Include="Plugin\Email\SysMailMessage.cs" />
+    <Compile Include="Plugin\Encryption\BigInteger.cs" />
+    <Compile Include="Plugin\Encryption\RSAEncryptDecryptCacheHelper.cs" />
+    <Compile Include="Plugin\Encryption\RSAEncryptDecryptKeyInfo.cs" />
+    <Compile Include="Plugin\Excel\CellFormatterBuilder.cs" />
+    <Compile Include="Plugin\Excel\ExcelCommon.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Exceptions\ExcelReportException.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Exceptions\ExcelReportFormatException.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Exceptions\ExcelReportTemplateException.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Export.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\ExportHelper.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Extend\EnumerableExtend.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Extend\ImageExtend.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Extend\ObjectExtend.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Extend\TypeExtend.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Formatters\Complex\ComplexFormatter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Formatters\Complex\RepeaterFormatter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Formatters\Complex\TableFormatter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Formatters\ElementFormatter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Formatters\EmbeddedFormatter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Formatters\Simple\CellFormatter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Formatters\Simple\PartFormatter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Formatters\Simple\SimpleFormatter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Others\Accumulation.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Others\RowIndexAccumulation.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Parameter\Parameter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Parameter\SheetParameterContainer.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Parameter\WorkbookParameterContainer.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Picture\PictureWithShapeFormatter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Picture\PictureWithShapeInfo.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\Picture\SheetRange.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\SheetAdapter.cs" />
+    <Compile Include="Plugin\Excel\ExcelReport\SheetFormatter.cs" />
+    <Compile Include="Plugin\Excel\Export.cs" />
+    <Compile Include="Plugin\Excel\Extend\CellExtends\CellExtend.cs" />
+    <Compile Include="Plugin\Excel\Extend\CellExtends\CellExtendConditionalFormattin.cs" />
+    <Compile Include="Plugin\Excel\Extend\RowExtend.cs" />
+    <Compile Include="Plugin\Excel\Extend\SheetExtend\SheetExtend.cs" />
+    <Compile Include="Plugin\Excel\Extend\SheetExtend\SheetExtendMergedRegion.cs" />
+    <Compile Include="Plugin\Excel\Extend\SheetExtend\SheetExtendPicture.cs" />
+    <Compile Include="Plugin\Excel\Extend\WorkbookExtend.cs" />
+    <Compile Include="Plugin\Excel\FormatterBuilder.cs" />
+    <Compile Include="Plugin\Excel\Import.cs" />
+    <Compile Include="Plugin\Excel\Info\CellSpan.cs" />
+    <Compile Include="Plugin\Excel\Info\MergedRegionInfo.cs" />
+    <Compile Include="Plugin\Excel\Info\PictureInfo.cs" />
+    <Compile Include="Plugin\Excel\Info\PictureStyle.cs" />
+    <Compile Include="Plugin\Excel\NPOIHelper.cs" />
+    <Compile Include="Plugin\Excel\ParseTemplate.cs" />
+    <Compile Include="Plugin\Excel\PartFormatterBuilder.cs" />
+    <Compile Include="Plugin\Excel\PictureWithShapeFormatterBuilder.cs" />
+    <Compile Include="Plugin\Excel\RepeaterFormatterBuilder.cs" />
+    <Compile Include="Plugin\Excel\SheetFormatterContainer.cs" />
+    <Compile Include="Plugin\Excel\TableFormatterBuilder.cs" />
+    <Compile Include="Plugin\Logging\CastleLogger.cs" />
+    <Compile Include="Plugin\Logging\CastleLoggerFactory.cs" />
+    <Compile Include="Plugin\Logging\HostEnvironment.cs" />
+    <Compile Include="Plugin\Logging\IHostEnvironment.cs" />
+    <Compile Include="Plugin\Logging\ILogger.cs" />
+    <Compile Include="Plugin\Logging\ILoggerFactory.cs" />
+    <Compile Include="Plugin\Logging\LoggingExtensions.cs" />
+    <Compile Include="Plugin\Logging\LoggingModule.cs" />
+    <Compile Include="Plugin\Logging\LogHelper.cs" />
+    <Compile Include="Plugin\Logging\LogLevel.cs" />
+    <Compile Include="Plugin\Logging\NullLogger.cs" />
+    <Compile Include="Plugin\Logging\NullLoggerFactory.cs" />
+    <Compile Include="Plugin\Logging\OrchardFileAppender.cs" />
+    <Compile Include="Plugin\Logging\OrchardLog4netFactory.cs" />
+    <Compile Include="Plugin\Logging\OrchardLog4netLogger.cs" />
+    <Compile Include="Plugin\Mapper\ShengMapper.cs" />
+    <Compile Include="Plugin\Mapper\TypeMappingCache.cs" />
+    <Compile Include="Plugin\Mapper\TypeMappingDescription.cs" />
+    <Compile Include="Plugin\Office\Converters\DocumentConvert.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Plugin\Office\Converters\DocumentConvert.designer.cs">
+      <DependentUpon>DocumentConvert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plugin\Office\Converters\DocumentEntity.cs" />
+    <Compile Include="Plugin\Office\Converters\DocumentConverter.cs" />
+    <Compile Include="Plugin\Office\Converters\DocumentDAL.cs" />
+    <Compile Include="Plugin\Office\Converters\DocumentService.cs" />
+    <Compile Include="Plugin\Office\Converters\DTOJsonConverter.cs" />
+    <Compile Include="Plugin\Office\Converters\DocumentEnums.cs" />
+    <Compile Include="Plugin\Office\Converters\DocumentConvertConfig.cs" />
+    <Compile Include="Plugin\Office\Converters\IConverter.cs" />
+    <Compile Include="Plugin\Office\Converters\Model\Bookmark.cs" />
+    <Compile Include="Plugin\Office\Converters\Model\DataItem.cs" />
+    <Compile Include="Plugin\Office\Converters\Model\DataSource.cs" />
+    <Compile Include="Plugin\Office\Converters\Model\Document.cs" />
+    <Compile Include="Plugin\Office\Converters\Model\ImageBookmark.cs" />
+    <Compile Include="Plugin\Office\Converters\Model\ListBookmark.cs" />
+    <Compile Include="Plugin\Office\Converters\Model\PlainBookmark.cs" />
+    <Compile Include="Plugin\Office\Converters\SimpleConverter.cs" />
+    <Compile Include="Plugin\Office\WordHelper.cs" />
+    <Compile Include="Plugin\VerifyImage\VerifyGifImage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AjaxFramework\SimpleObject.cs" />
+    <Compile Include="AjaxFramework\WebHandler\ResposeAnnotaionAttribute.cs" />
+    <Compile Include="AjaxFramework\WebHandler\WebHandler.cs" />
+    <Compile Include="AjaxFramework\WebHandler\WebHandler.Script.cs" />
+    <Compile Include="AjaxFramework\WebHandler\WebRequestDecoder.cs" />
+    <Compile Include="AjaxFramework\WebHandler\WebResponseEncoder.cs" />
+    <Compile Include="Plugin\Email\EmailHelper.cs" />
+    <Compile Include="ThreadTasks\ThreadPool.cs" />
+    <Compile Include="UndoRedo\Change.cs" />
+    <Compile Include="UndoRedo\Collections\Generic\UndoRedoDictionary.cs" />
+    <Compile Include="UndoRedo\Collections\Generic\UndoRedoList.cs" />
+    <Compile Include="UndoRedo\Command.cs" />
+    <Compile Include="UndoRedo\CommandDoneEventArgs.cs" />
+    <Compile Include="UndoRedo\CommandDoneType.cs" />
+    <Compile Include="UndoRedo\IUndoRedoMember.cs" />
+    <Compile Include="UndoRedo\UndoRedo.cs" />
+    <Compile Include="UndoRedo\UndoRedoManager.cs" />
+    <Compile Include="Utility\Byte64.cs" />
+    <Compile Include="Utility\DateTimeHelper.cs" />
+    <Compile Include="Utility\EncodingUtility.cs" />
+    <Compile Include="Utility\EncryptUtility.cs" />
+    <Compile Include="Utility\EntityUtil.cs" />
+    <Compile Include="Utility\FileSystems\FileSystemStorageProvider.cs" />
+    <Compile Include="Utility\FileSystems\IStorageFile.cs" />
+    <Compile Include="Utility\FileSystems\IStorageFolder.cs" />
+    <Compile Include="Utility\FileSystems\IStorageProvider.cs" />
+    <Compile Include="Utility\FileUtility.cs" />
+    <Compile Include="Utility\Hash.cs" />
+    <Compile Include="Utility\HttpPostHelper.cs" />
+    <Compile Include="Utility\HttpRequestExtensions.cs" />
+    <Compile Include="Utility\ImageUtility.cs" />
+    <Compile Include="Utility\IOHelper.cs" />
+    <Compile Include="Utility\JsonHelper.cs" />
+    <Compile Include="Utility\ListExtensions.cs" />
+    <Compile Include="Utility\NumberUtility.cs" />
+    <Compile Include="Utility\RandomHelper.cs" />
+    <Compile Include="Utility\ReadOnlyCollectionExtensions.cs" />
+    <Compile Include="Utility\Reflect.cs" />
+    <Compile Include="Utility\ReflectionUtil.cs" />
+    <Compile Include="Utility\ReflectOn.cs" />
+    <Compile Include="Utility\RouteValueDictionaryExtensions.cs" />
+    <Compile Include="Utility\SerializeHelper.cs" />
+    <Compile Include="Utility\SqlMapperExtensions.cs" />
+    <Compile Include="Utility\StreamUtility.cs" />
+    <Compile Include="Utility\StringExtensions.cs" />
+    <Compile Include="Plugin\VerifyImage\IVerifyImage.cs" />
+    <Compile Include="Plugin\VerifyImage\VerifyImage.cs" />
+    <Compile Include="Plugin\VerifyImage\VerifyImageInfo.cs" />
+    <Compile Include="Plugin\VerifyImage\VerifyImageProvider.cs" />
+    <Compile Include="Utility\StringHelper.cs" />
+    <Compile Include="Utility\TypeHelper.cs" />
+    <Compile Include="Utility\Utils.cs" />
+    <Compile Include="Utility\ValidateHelper.cs" />
+    <Compile Include="Utility\WebHelper.cs" />
+    <Compile Include="WinService\WindowsServiceHelper.cs" />
+    <Compile Include="WinService\WindowsServiceItemCollection.cs" />
+    <Compile Include="WinService\WindowsServive.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utility\LogHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AjaxFramework\WebHandler\net.js" />
+    <EmbeddedResource Include="Plugin\Office\Converters\DocumentConvert.resx">
+      <DependentUpon>DocumentConvert.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interface\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="ActiveDs">
+      <Guid>{97D25DB0-0363-11CF-ABC4-02608C9E7553}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

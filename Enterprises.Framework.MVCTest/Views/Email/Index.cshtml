@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="code-text">
+    <p>
+        请到 <a href="">254949483@qq.com</a> 查阅验证邮件<br />
+    </p>
+    <p class="code-text2">
+        <a href="javascript:;" onclick="SendEmail();" class="ablue">通过Helper类发送</a></p>
+    <p class="code-text2">
+        <a href="javascript:;" onclick="SendSynEmail();" class="ablue">通过ISmtpMail接口发送</a></p>
+</div>
+<script type="text/javascript">
+   function SendEmail() {
+       var url = "@Href("~/Email/ReSendEmail")";
+       $.post(url, { typeId: 1 }, function(data) {
+           if (data.result) {
+               alert("邮件发送成功.");
+           } else {
+               alert("发送失败,请稍后重试.");
+           }
+       });
+   }
+   
+   function SendSynEmail() {
+       var url = "@Href("~/Email/ReSendEmail")";
+       $.post(url, { typeId: 2 }, function(data) {
+           if (data.result) {
+               alert("邮件发送成功.");
+           } else {
+               alert("发送失败,请稍后重试.");
+           }
+       });
+   }
+</script>

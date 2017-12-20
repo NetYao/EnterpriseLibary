@@ -1,0 +1,24 @@
+﻿@model Enterprises.Framework.MVCTest.Models.FckTestViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript" src="~/Content/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="~/Content/ckeditor/adapters/jquery.js"></script>
+<h2>测试FckEditor</h2>
+@using (Html.BeginForm("Index", "FckTest", FormMethod.Post, new { @id = "infoissueform" }))
+{
+     @Html.TextAreaFor(p=>p.Contents)
+     @Html.TextBoxFor(p => p.OtherTest, new { @class = "text", style = "width:300px;" })
+    <input type="submit" onclick="return check()" value="提交"/>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+       $('#Contents').ckeditor();
+    });
+    
+    function check() {
+        alert(CKEDITOR.instances.content.getData());
+        return false;
+    }
+</script>

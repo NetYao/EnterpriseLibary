@@ -1,0 +1,19 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "title";
+}
+<h2>
+    刷新验证码测试</h2>
+<img src="~/VerifyImage/GetValidateCode" id="valiCode" width="80" height="28" style="vertical-align: middle" />
+<span class="help-inline color-red"><a href="javascript:;" id="RefreshCode" class="ablue">
+                                        刷新验证码</a></span> <span id="CodeMsg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                        
+ <script type="text/javascript">
+            $(function() {
+                $("#RefreshCode").on("click", function() {
+                    var url = "@Href("~/VerifyImage/GetValidateCode?time=")" + (new Date()).getTime();
+                    $("#valiCode").attr("src", url);
+                });
+            });
+           
+</script>

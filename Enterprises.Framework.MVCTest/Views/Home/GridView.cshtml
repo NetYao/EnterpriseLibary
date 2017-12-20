@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "GridView";
+}
+
+<h2>GridView</h2>
+<div id="maingrid"></div>
+<script type="text/javascript">
+    $("#maingrid").ligerGrid({
+        title: 'ligergird演示',
+        columns: [
+        { name: "Id", display: "主键", width: 200 },
+        { name: "Name", display: "用户名", width: 200 },
+        { name: "CreateDate", display: "创建时间", width: 200, type: "date", format: "yyyy年MM月dd日"}],
+        url: '/home/grid', height: 400,userPager:true,checkbox:true
+
+    });
+</script>

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+     <script language="javascript" type="text/javascript">
+
+         function Button1_onclick() {
+
+             var student = { Name: 'huizheng', Age: '26', SN: '123-456' };
+
+             $.net.DemoHandler.AddStudent(student, function(e) {
+                 alert(e);
+             });
+
+         }
+         
+     </script>
+<head>
+    <title></title>
+        <script src="../Scripts/jquery-1.4.2.min.js"  charset="utf-8"  type="text/javascript"></script>
+        <script src="../Scripts/json2.js" charset="utf-8" type="text/javascript"></script>
+        <script src="DemoHandler.ashx" charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+               <input id="Button1" type="button" value="提交一个对象" onclick="return Button1_onclick()" /><h3>后台将以非契约式反序列化处理</h3>
+</body>
+
+
+</html>

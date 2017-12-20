@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+    <title>测试返回集合</title>
+        <script src="../Scripts/jquery-1.4.1.min.js"  charset="utf-8"  type="text/javascript"></script>
+        <script src="../Scripts/json2.js" charset="utf-8" type="text/javascript"></script>
+        <script src="DemoHandler.ashx" charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+     <table id="test"></table>
+    <input id="Button1" onclick="Bt_click();" type="button" value="button" />
+</body>
+<script language="javascript" type="text/javascript">
+    function Bt_click() {
+        var page = 1;
+        var rows = 2;
+        var sort = 'abc';
+        var order = 'desc';
+        $.net.DemoHandler.GetData(page, rows, sort, order, function (e) {
+            alert(e.total);
+            for (var i = 0; i < e.rows.length; i++) {
+                alert(e.rows[i].addr);
+            }
+        });
+    }
+
+</script>
+
+</html>

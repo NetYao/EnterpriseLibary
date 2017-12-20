@@ -1,0 +1,25 @@
+﻿@model dynamic
+<script src="../../Scripts/JuqeryPlugin.js" type="text/javascript"></script>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="one"><h2 onclick="clickMe()">快点击我</h2>
+</div>
+
+<div id="two"><h2 onclick="clickMe2()">快点击我222</h2>
+</div>
+
+<script type="text/javascript">
+    $("#one").defaults.onChanged = function () {
+        alert("这里是回调函数.");
+    };
+    
+    function clickMe() {
+        $("#one").DemoPlugin();
+    }
+
+    function clickMe2() {
+        $("#two").DemoPlugin();
+    }
+</script>

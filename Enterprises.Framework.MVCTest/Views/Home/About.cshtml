@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>@ViewBag.Message</h2>
+</hgroup>
+
+<table>
+    <tr>
+        <td>@Html.ActionLink("验证码测试", "Index", "VerifyImage")
+        </td>
+        <td>@Html.ActionLink("邮件测试", "Index", "Email")
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td>
+        </td>
+    </tr>
+</table>

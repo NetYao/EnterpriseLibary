@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<head>
+    <title>测试Post加载html用户控件等</title>
+        <script src="../Scripts/jquery-1.4.2.min.js"  charset="utf-8"  type="text/javascript"></script>
+        <script src="../Scripts/json2.js" charset="utf-8" type="text/javascript"></script>
+       <script src="DemoHandler.ashx" charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+    <div id="dlg" style="padding:20px;">
+    <h2>Account Information</h2>
+   
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" id="name" value="wzcheng" /></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td><input type="text" id="address"  value ="香槟小镇"/></td>
+            </tr>
+            <tr>
+                <td>City:</td>
+                 <td><input type="text" id="city" value="合肥" /></td>
+            </tr>
+             <tr>
+                <td>
+                    <input id="Button1" type="button" value="提交" /></td>
+                 <td></td>
+            </tr>
+        </table>
+        <div id="loadHtml"></div>
+    
+</div>
+</body>
+<script language="javascript" type="text/javascript">
+    $('#Button1').click(function () {
+        var address = $('#address').val() + "_new";
+        var city = $('#city').val() + "_new";
+        var name = $('#name').val() + "_new";
+        $.net.DemoHandler.GetPerson(name, address, city, function (e) {
+            alert(e);
+            $('#loadHtml').innerHtml(e);
+        });
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,508 @@
+﻿<HTML>
+	<HEAD>
+		<META content="MSHTML 6.00.2800.1276" name=GENERATOR>
+		<META http-equiv=Content-Type content="text/html; charset=gbk">
+		<META http-equiv=Content-Style-Type content=text/css>
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0" />
+	
+		<LINK href="../../css/CN/BLUE/mainWin.css" type=text/css media=screen rel=stylesheet>
+		<LINK href="../../css/CN/BLUE/query.css" type=text/css media=screen rel=stylesheet>
+			
+		<style type="text/css">
+			#TableData .serach_list td{ border-top: 0px solid #D2D2D2; empty-cells: show; height: 24px; padding-left: 8px; vertical-align: middle;}
+			#explain_div{display:none; border: 1px solid #91C0E3; margin:10px 0; padding: 10px; width:800px; vertical-align: middle;}
+			#explain_div .titleLeft{text-align: left;float: left; height: 22px;width:150px; padding: 4px 0 0px 3px; border-bottom: 1px solid #DDDDDD;}
+			#explain_div .titleRight{text-align: right;}
+			#explain_div .content{clear: both; padding: 10px; }
+			.ItemBlock_Title1 .titleRight{text-align: right; padding-right:5px;}
+			.ItemBlock_Title1 .titleLeft{text-align: left;float: left; height: 22px;width:150px; }
+			
+		</style>
+		
+		<script language="javascript" src="../../js/jquery-1.6.1.min.js"></script>
+		<script language="javascript" src="../../js/My97DatePicker/WdatePicker.js" defer="defer"></script>
+
+		
+	<script type="text/javascript">
+
+	    $(function () {
+
+	        $("#explain_a").click(function () { $("#explain_div").fadeIn(500); });
+	        $("#explain_a_c").click(function () { $("#explain_div").fadeOut(500); });
+	        $("#setFields_a_c").click(function () { $("#setFields_div").fadeOut(500); });
+	        $("#explain_a").toggle(function () { $("#explain_div").fadeIn(500); }, function () { $("#explain_div").fadeOut(500); });
+
+	    });
+
+	    function add_search(t) {
+	        var o = $(t).parent().parent().parent();
+	        o.append($("#search_add").html());
+	    }
+	    function delete_search(t) {
+	        if ($("#TableData .serach_list").size() > 1) {
+	            $(t).parent().parent().remove();
+	        } else {
+	            $(t).parent().parent().find(":input").val("");
+	        }
+	    }
+
+	    function go_sub(subType) {
+	        var param_sql = " where ";
+	        var param_str = "";
+	        var param_isOk = true;
+	        var count = $("#TableData .serach_list").size();
+
+
+	        //当只有一行没有任何条件时，查询所有数据,否则进行条件相关验证
+	        if (count == 1) {
+	            $("#TableData .serach_list :input").each(function (i) {
+	                if ($.trim($(this).val()) != "") {
+	                    param_isOk = false;
+	                }
+	            });
+
+	            if (subType == 1) {
+	                if (param_isOk) {
+	                    param_sql += " 1=1";
+	                    $("#search_str_sql").val(param_sql);
+	                    //search_gosub_ajax(); 提交查询
+	                    return;
+	                }
+	                param_isOk = true;
+	            } else {
+	                if (param_isOk) { return; }
+
+	            }
+
+	        }
+
+
+	        $("#TableData .serach_list").each(function (i) {
+	            //fieldName  logicRelation   paramValue  joinRelation
+	            var fieldName = $(this).find(".fieldName").eq(0).val();
+	            var fieldName_text = $(this).find(".fieldName").eq(0).find("option:selected").text();
+	            var logicRelation = $(this).find(".logicRelation").eq(0).val();
+	            var paramValue = $(this).find(".paramValue").eq(0).val();
+	            var joinRelation = $(this).find(".joinRelation").eq(0).val();
+	            var leftJoin = $(this).find(".leftJoin").eq(0).val();
+	            var rightJoin = $(this).find(".rightJoin").eq(0).val();
+
+	            if (fieldName == "") { alert("请选择条件字段"); $(this).find(".fieldName").eq(0).focus(); param_isOk = false; return false; }
+	            if (logicRelation == "") { alert("请选择条件"); $(this).find(".logicRelation").eq(0).focus(); param_isOk = false; return false; }
+	            if (paramValue == "" && logicRelation != 3 && logicRelation != 4) { alert("请选输入条件值"); $(this).find(".paramValue").eq(0).focus(); param_isOk = false; return false; }
+	            paramValue = $.trim(paramValue);
+
+	            if (joinRelation == "" && count != i + 1) { alert("请选条件的关联"); $(this).find(".joinRelation").eq(0).focus(); param_isOk = false; return false; }
+
+	            var fields = fieldName.split(",");
+	            if (fields[1] == "d" && (logicRelation == 1 || logicRelation == 2)) {
+	                alert("该条件字段为日期型，不能使用包含条件！");
+	                $(this).find(".logicRelation").eq(0).focus();
+	                param_isOk = false; return false;
+	            }
+	            if (fields[1] != "c" && logicRelation == "like") {
+	                alert("不是字符型字段，不能使用“like”条件！");
+	                $(this).find(".logicRelation").eq(0).focus();
+	                param_isOk = false; return false;
+	            }
+
+
+
+
+	            if (fields[1] == "n" && paramValue.length > 0) {
+	                if (logicRelation == 1 || logicRelation == 2) {
+	                    if (paramValue.lastIndexOf(",") == paramValue.length - 1) { paramValue = paramValue.substring(0, paramValue.lastIndexOf(",")); }
+	                    var s = paramValue.split(",");
+	                    for (var t in s) {
+	                        if (s[t] == "") {
+	                            alert("该条件值格式无效！");
+	                            $(this).find(".paramValue").eq(0).focus();
+	                            param_isOk = false; return false;
+	                        }
+	                        if (isNaN(s[t])) {
+	                            alert("该条件值只能是数字！");
+	                            $(this).find(".paramValue").eq(0).focus();
+	                            param_isOk = false; return false;
+	                        }
+	                    }
+	                } else {
+	                    if (isNaN(paramValue)) {
+	                        alert("该条件值只能是数字！");
+	                        $(this).find(".paramValue").eq(0).focus();
+	                        param_isOk = false; return false;
+	                    }
+	                }
+	            }
+
+	            param_sql += " ";
+	            param_str += " ";
+	            if (leftJoin != "") {
+	                param_sql += "("
+	                param_str += "("
+	            }
+
+	            param_sql += fields[0];
+	            param_str += fieldName_text;
+
+	            if (logicRelation == 1) {
+	                param_sql += " in (";
+	                param_str += " in (";
+	            } else if (logicRelation == 2) {
+	                param_sql += " not in (";
+	                param_str += " not in (";
+	            } else if (logicRelation == 3) {
+	                param_sql += " is null ";
+	                param_str += " is null ";
+	            } else if (logicRelation == 4) {
+	                param_sql += " is not null ";
+	                param_str += " is not null ";
+	            } else if (logicRelation == "like") {
+	                param_sql += " like ";
+	                param_str += " like ";
+	            } else {
+	                param_sql += logicRelation;
+	                param_str += logicRelation;
+	            }
+
+	            if (logicRelation != 3 && logicRelation != 4) {
+	                if (fields[1] == 'c') {
+	                    if (logicRelation == 1 || logicRelation == 2) {
+	                        if (paramValue.lastIndexOf(",") == paramValue.length - 1) { paramValue = paramValue.substring(0, paramValue.lastIndexOf(",")); }
+	                        param_sql += paramValue;
+	                        param_str += paramValue;
+
+	                        if (paramValue.indexOf("'") != 0) {
+	                            alert("该条件值引号没有正确开始！");
+	                            $(this).find(".paramValue").eq(0).focus();
+	                            param_isOk = false; return false;
+	                        }
+
+	                        if (paramValue.lastIndexOf("'") != paramValue.length - 1) {
+	                            alert("该条件值引号没有正确结束！");
+	                            $(this).find(".paramValue").eq(0).focus();
+	                            param_isOk = false; return false;
+	                        }
+
+
+
+	                    } else if (logicRelation == "like") {
+	                        param_sql += " '%" + paramValue + "%'";
+	                        param_str += " '" + paramValue + "'";
+	                    } else {
+	                        param_sql += "'" + paramValue + "'";
+	                        param_str += "'" + paramValue + "'";
+	                    }
+
+	                    if (countSubstr(paramValue, "'") % 2 > 0) {
+	                        alert("该条件值引号不匹配！");
+	                        $(this).find(".paramValue").eq(0).focus();
+	                        param_isOk = false; return false;
+	                    }
+	                } else if (fields[1] == 'd') {
+	                    //注意数据库不同转换函数不同
+	                    // CONVERT(varchar(100), GETDATE(), 23)   --->2006-05-16 
+	                    //convert(datetime,你的字符串或者列名)
+	                    param_sql += "to_date('" + paramValue + "','yyyy-mm-dd')";
+	                    param_str += paramValue;
+	                } else {
+	                    param_sql += paramValue;
+	                    param_str += paramValue;
+	                }
+	            }
+
+	            if (logicRelation == 1 || logicRelation == 2) {
+	                param_sql += ") ";
+	                param_str += ") ";
+	            }
+
+
+	            if (rightJoin != "") {
+	                param_sql += ") ";
+	                param_str += ") ";
+	            }
+
+	            if (joinRelation != "" && count != i + 1) {
+	                param_sql += " " + joinRelation + "";
+	                param_str += " " + joinRelation + "";
+	            }
+
+
+	            //	alert($(this).find(".fieldName").eq(0).val());
+	            //czxt<windows xp or jsjmc in 'jj','22' and
+	        });
+
+
+	        //alert(subType);
+	        //alert(param_sql);
+	        $("#search_str").val(param_str);
+	        $("#search_str_sql").val(param_sql);
+
+	        if (subType == 1) {
+	            if (param_isOk) {
+	                search_gosub_ajax(); //提交查询
+	            }
+	        } else {
+	            $("#search_str").fadeIn(500).val(param_str);
+	        }
+
+
+	    }
+
+
+	    function formatM(o) {
+	        var f = $(o).parent().parent().find(".fieldName").eq(0);
+	        if (f.val() == "") { return; }
+	        if (f.val().split(",")[1] == "d") {
+	            WdatePicker({ dateFmt: 'yyyy-MM-dd' });
+	        } else {
+	            //$(o).removeAttr("onfocus");
+	        }
+	    }
+
+
+
+	    function countSubstr(str, substr, isIgnore) {
+	        var count;
+	        var reg = "";
+	        if (isIgnore == true) {
+	            reg = "/" + substr + "/gi";
+	        } else {
+	            reg = "/" + substr + "/g";
+	        }
+
+	        reg = eval(reg);
+	        if (str.match(reg) == null) {
+	            count = 0;
+	        } else {
+	            count = str.match(reg).length;
+	        }
+	        return count;
+	    }
+
+
+	    function refresh_type(o) {
+	        if ($(o).val() == "") { return; }
+
+	        var paramValue = $(o).parent().parent().find(".paramValue").eq(0);
+
+	        var fields = $(o).val().split(",");
+	        if (fields[0] == "bm") {
+	            paramValue.parent().append($("#dept_select").html());
+	            paramValue.remove();
+	        } else {
+	            var obj = '<input maxlength="100"  class="paramValue" style="width: 250px;" type="text" onfocus="formatM(this);"/>';
+	            paramValue.parent().append(obj);
+	            paramValue.remove();
+	        }
+	    }
+	
+	
+	</script>
+
+	</HEAD>
+	<body marginwidth="0" topmargin="0" leftmargin="0" marginheight="0">
+		<form method="post" id="actForm" name="actForm" action="">
+			<input id="functionName" type="hidden" name="functionName" />
+			
+			<DIV ID=MainArea>
+				<CENTER>
+					<DIV CLASS=ItemBlockBorder>
+						<DIV CLASS=ItemBlock>
+					
+							<TABLE WIDTH="70%" BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+							<TR ALIGN=center VALIGN=middle ID=TableTitle>
+								<TD width="20%">条件字段</TD>
+								<TD width="8%">条件</TD>
+								<TD width="*%">条件值</TD>
+								<TD width="10%">关联 </TD>
+								<TD width="8%">左括号 </TD>
+								<TD width="8%">右括号 </TD>
+								<TD width="15%">操作 </TD>
+							</TR>
+							<TBODY ID="TableData">
+								<tr height="18" class="serach_list" id="d0">
+									<TD>
+										<select class="fieldName" onchange="refresh_type(this);" style="width: 180px;">
+													<option value="">选择</option>
+													<option value="jsjbh,c">计算机编号</option>
+													<option value="jsjmc,c">计算机名称</option>
+													<option value="cgrq,d">创建日期</option>
+													<option value="jq,n">价钱</option>
+													<option value="bm,c">部门</option>
+										</select>
+									</TD>
+									<TD>
+										<select class="logicRelation" style="width: 80px;">
+											<option value="">选择</option>
+											<option value="=">=</option>
+											<option value="&gt;=">&gt;=</option>
+											<option value="&lt;=">&lt;=</option>
+											<option value="!=">!=</option>
+											<option value="&gt;">&gt;</option>
+											<option value="&lt;">&lt;</option>
+											<option value="like">like</option>
+											<option value="1">包含</option>
+											<option value="2">不包含</option>
+											<option value="3">为空</option>
+											<option value="4">不为空</option>
+										</select>
+									</TD>
+									<TD>
+										<input maxlength="100"  class="paramValue" style="width: 250px;" type="text" onfocus="formatM(this);"/>
+									</TD>
+									<TD>
+										<select class="joinRelation" style="width: 80px;">
+													<option value="">选择</option>
+													<option value="and">并且</option>
+													<option value="or">或者</option>
+											</select>
+									</TD>
+									<TD>
+										<select class="leftJoin" style="width: 80px;">
+													<option value="">无</option>
+													<option value="(">(</option>
+													<option value="((">((</option>
+													<option value="(((">(((</option>
+											</select>
+									</TD>
+									<TD>
+										<select class="rightJoin" style="width: 80px;">
+													<option value="">无</option>
+													<option value=")">)</option>
+													<option value="))">))</option>
+													<option value=")))">)))</option>
+										</select>
+									</TD>
+									<TD align="center">
+										<a onclick="delete_search(this);" title="删除当前条件" href="#"><img border="0" src="../../Images/delete.gif"/></a>
+										&nbsp;&nbsp;
+										<a onclick="add_search(this);" title="添加1个条件"  href="#"><img border="0" src="../../Images/add.gif"/></a>
+									</TD>
+								</tr>
+		
+								</TBODY>
+							</TABLE>
+								
+								
+								<br/><br/>
+							<div id="dept_select" style="display:none;">
+							<select class="paramValue"  style="width: 250px;">
+								<option value="">选择</option>
+								<option value="dept1">部门1</option>
+								<option value="dept2">部门2</option>
+								<option value="dept3">部门3</option>
+							</select>				
+							</div>
+								
+								
+							<textarea id="search_str" rows="3" cols="80"></textarea>
+							<textarea id="search_str_sql" rows="3" cols="80"></textarea>
+							
+						</DIV>
+					</DIV>
+					
+					
+					<DIV ID=InputDetailBar>
+						<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=10 ALIGN=center>
+							
+							<TR>
+								
+								<TD>
+									
+									<div onclick="go_sub(0);" class="FuncBtn">
+										<div class=FuncBtnHead></div>
+										<div class=FuncBtnMemo>
+											分析SQL
+										</div>
+										<div class=FuncBtnTail></div>
+									</div>
+								</TD>
+								<TD>
+									
+									<div onclick="go_sub(1);" class="FuncBtn">
+										<div class=FuncBtnHead></div>
+										<div class=FuncBtnMemo>
+											查询
+										</div>
+										<div class=FuncBtnTail></div>
+									</div>
+								</TD>
+								
+							</TR>
+						</TABLE>
+						
+						
+					</DIV>
+				</CENTER>
+			</DIV>
+		</form>
+
+
+
+<table style="display:none;" >
+<tbody id="search_add">
+	<tr height="18" class="serach_list" id="d0">
+		<TD>
+			<select class="fieldName" onchange="refresh_type(this);" style="width: 180px;">
+						<option value="">选择</option>
+						<option value="jsjbh,c">计算机编号</option>
+						<option value="jsjmc,c">计算机名称</option>
+						<option value="cgrq,d">创建日期</option>
+						<option value="jq,n">价钱</option>
+						<option value="bm,c">部门</option>
+			</select>
+		</TD>
+		<TD>
+			<select class="logicRelation" style="width: 80px;">
+				<option value="">选择</option>
+				<option value="=">=</option>
+				<option value="&gt;=">&gt;=</option>
+				<option value="&lt;=">&lt;=</option>
+				<option value="!=">!=</option>
+				<option value="&gt;">&gt;</option>
+				<option value="&lt;">&lt;</option>
+				<option value="like">like</option>
+				<option value="1">包含</option>
+				<option value="2">不包含</option>
+				<option value="3">为空</option>
+				<option value="4">不为空</option>
+			</select>
+		</TD>
+		<TD>
+			<input maxlength="100" class="paramValue" style="width: 250px;" type="text"  onfocus="formatM(this);" />
+		</TD>
+		<TD>
+			<select class="joinRelation" style="width: 80px;">
+						<option value="">选择</option>
+						<option value="and">并且</option>
+						<option value="or">或者</option>
+				</select>
+		</TD>
+		<TD>
+			<select class="leftJoin" style="width: 80px;">
+						<option value="">无</option>
+						<option value="(">(</option>
+						<option value="((">((</option>
+						<option value="(((">(((</option>
+				</select>
+		</TD>
+		<TD>
+			<select class="rightJoin" style="width: 80px;">
+						<option value="">无</option>
+						<option value=")">)</option>
+						<option value="))">))</option>
+						<option value=")))">)))</option>
+				</select>
+		</TD>
+		<TD align="center">
+			<a onclick="delete_search(this);" title="删除当前条件" href="#"><img border="0" src="<%=request.getContextPath() %>/image/delete.gif"/></a>
+			&nbsp;&nbsp;
+			<a onclick="add_search(this);" title="添加1个条件"  href="#"><img border="0" src="<%=request.getContextPath() %>/image/add.gif"/></a>
+		</TD>
+	</tr>
+	</tbody>
+</table>
+
+	</body>
+</HTML>

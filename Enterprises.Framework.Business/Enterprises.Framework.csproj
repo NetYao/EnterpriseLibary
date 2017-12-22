@@ -120,6 +120,8 @@
     <Compile Include="Entity\KeyValueItem.cs" />
     <Compile Include="Entity\KeyValueItemCollection.cs" />
     <Compile Include="Entity\KeyValueItemCollectionWrap.cs" />
+    <Compile Include="Plugin\Config\BconConfig\BCONConfig.cs" />
+    <Compile Include="Plugin\Config\BconConfig\BCONParser.cs" />
     <Compile Include="Plugin\Config\ConfigBase.cs" />
     <Compile Include="Plugin\Config\ConfigFactory.cs" />
     <Compile Include="Plugin\Config\ConfigSection.cs" />

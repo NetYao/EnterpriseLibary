@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="AliPay\AliPayHelperTests.cs" />
     <Compile Include="Logging\LoggerTest.cs" />
+    <Compile Include="Plugin\Config\BconConfigTest.cs" />
     <Compile Include="Plugin\Domain\AdManager\ADManagerTests.cs" />
     <Compile Include="Plugin\Domain\AD\AdTest.cs" />
     <Compile Include="Plugin\Domain\AD\ExchangeEwsServiceTests.cs" />
@@ -137,6 +138,9 @@
     <None Include="Enterprises.Framework.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Plugin\Config\TestData.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
